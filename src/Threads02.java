@@ -3,13 +3,12 @@ import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
 
 public class Threads02 extends SimpleFileVisitor<Path> {
-
     @Override
     public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
 
         String name = file.toAbsolutePath().toString();
 
-        if( name.endsWith(".txt") /* name.toLowerCase().endsWith(".txt") */) {
+        if( name.endsWith(".txt") ) {
             Thread contador = new Thread( new ContadorDeLineas(name) );
             contador.start();
         }
@@ -24,10 +23,10 @@ public class Threads02 extends SimpleFileVisitor<Path> {
     }
 
     public static void main(String[] args) throws IOException {
-        long tiempo1; //tiempo en contar las líneas de cada archivo (individual)
-        long tiempo2 = 0; //tiempo en contar las líneas en todos los archivos (total)
-        long linea1; //lineas para cada archivo (individual)
-        long linea2 = 0; //lineas para todos los archivos (total)
+        long tiempo1;
+        long tiempo2 = 0;
+        long l1;
+        long l2 = 0;
 
         if (args.length == 0){
             System.exit(0);
